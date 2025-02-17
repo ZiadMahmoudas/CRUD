@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <link rel="stylesheet" href="style/all.min.css">
+    <link rel="stylesheet" href="style/bootstrap-icons.css">
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/css.css">
+</head>
+
+<body class="bg-dark ">
+    <div class="data d-flex  justify-content-center align-items-center">
+        <h3 class="text-white text-center">Table for Data</h3>
+    </div>
+    <div class="container d-flex flex-column align-items-center">
+    <div class="bg-dark border-0 w-50 mb-4">
+        <label class="text-white" for="Fname">FirstName:</label>
+        <input class="form-control" type="text" name="FirstName" id="Fname"  required >
+        <div id="Invalid1">Invalid fname format!</div>
+        <div id="valid1">valid fname format!</div>
+    </div>    
+    <div class=" bg-dark border-0 w-50 mb-4">
+        <label class="text-white" for="Lname">LastName:</label>
+        <input class="form-control" type="text" name="LastName" id="Lname" required>
+        <div id="Invalid2">Invalid lname format!</div>
+        <div id="valid2">valid lname format!</div>
+    </div>
+    <div class=" bg-dark border-0 w-50 mb-4">
+        <label class="text-white" for="Email">Email:</label>
+        <input class="form-control" type="email" name="Email" id="Email" required>
+        <div id="Invalid3">Invalid email format!</div>
+        <div id="valid3">valid email format!</div>
+        <div id="Repeat">This email is already Exist</div>
+    </div>
+    <div class=" bg-dark border-0 w-50">
+        <label class="text-white" for="Age">Age:</label>
+        <input class="form-control" type="email" name="Age" id="Age" required>
+        <div id="Invalid4">Invalid age format!</div>
+        <div id="valid4">valid age format!</div>
+        <div id="Repeat">This age is already Exist</div>
+    </div>
+    <div class="container-fluid d-flex flex-column align-items-center mt-4 gap-3">
+        <div class="d-flex gap-5">
+    <button type="submit" class="btn btn-primary" id="add">Add</button>
+    <button type="submit" class="btn btn-light" id="clear">clear</button>
+     </div>
+    <input placeholder="search" class="w-50 form-control " type="search" name="search" id="search">
+    </div>
+</div>
+
+<div class="container mt-5">
+  <table class="table text-white">
+    <thead>
+        <tr class="table-active">
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        <!--  -->
+    </tbody>
+  </table>
+</div>
+</body>
+<script src="vendor/bootstrap.bundle.js" defer></script>
+<script src="vendor/main.js" defer></script>
+</html>
