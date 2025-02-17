@@ -18,10 +18,11 @@ var Repeat = document.getElementById("Repeat")
 var arr = JSON.parse(localStorage.getItem("users")) || [];
 var currentIndex=0;
 
+
 var regxFirstName = /[a-z]/i;
 var regxLastName = /^[a-z]{1,10}$/i
 var regxEmail = /[a-z0-9]{0,15}@(gmail|outlook|mail).com$/i
-var regxAge = /^[0-7]{1}[0-9]{1}$/i
+var regxAge = /^(([0-7]{1}[0-9]{1})|80)$/i
 
 document.addEventListener("keydown",function(e){
     if(e.keyCode === 13){
@@ -51,14 +52,13 @@ else{
     saveupdate()
     btnAdd.innerHTML = "Add"
 }
-}
 displayINTable(arr);
 clearInputsField();
 SaveDataINLocalStorage();
+}
     }
 function displayINTable(data){
-    var result="";
-    
+    var result=""; 
     for(var i=0 ; i<data.length;i++){
     result +=`<tr>
              <td class="text-white">${data[i].FirstName}</td>
@@ -101,8 +101,8 @@ function update(index){
   Lname.value = `${arr[index].LastName}` 
   mail.value = `${arr[index].Email}` 
   age.value = `${arr[index].Age}` 
+  currentIndex = index;
  btnAdd.innerHTML = "Update"
- 
 }
 function saveupdate(){
     arr[currentIndex] = {
@@ -111,11 +111,9 @@ function saveupdate(){
         Email: mail.value.trim(),
         Age: age.value.trim()
     };
-    displayINTable(arr);
-    SaveDataINLocalStorage();
 }
 function ClearFromLocalStorage(){
-    localStorage.removeItem("users")
+    localStorage.removeItem("users") 
 }
 function SaveDataINLocalStorage(){
     localStorage.setItem("users", JSON.stringify(arr));
@@ -130,7 +128,7 @@ function showVaildation(){
           Invalid1.style.display = "none"
           setTimeout(() => {
             valid1.style.display = "none"
-          },3000);
+          },3000)
     }else{
         Invalid1.classList.add("invalid-feedback")
         valid1.classList.remove("valid-feedback")
@@ -138,7 +136,7 @@ function showVaildation(){
         valid1.style.display = "none"
         setTimeout(() => {
             Invalid1.style.display = "none"
-          },3000);
+          },3000)
            flag = false
     }
     if(regxLastName.test(Lname.value)){
@@ -148,7 +146,7 @@ function showVaildation(){
           Invalid2.style.display = "none"
           setTimeout(() => {
             valid2.style.display = "none"
-          },3000);
+          },3000)
     }else{
         Invalid2.classList.add("invalid-feedback")
         valid2.classList.remove("valid-feedback")
@@ -156,7 +154,7 @@ function showVaildation(){
         valid2.style.display = "none"
         setTimeout(() => {
             Invalid2.style.display = "none"
-          },3000);
+          },3000)
            flag = false
     }
     if(regxEmail.test(mail.value)){
@@ -167,7 +165,7 @@ function showVaildation(){
           Invalid3.style.display = "none"
           setTimeout(() => {
             valid3.style.display = "none"
-          },3000);
+          },3000)
     
 }
     else{
@@ -177,7 +175,7 @@ function showVaildation(){
           valid3.style.display = "none"
           setTimeout(() => {
             Invalid3.style.display = "none"
-          },3000);
+          },3000)
            flag = false
     }
     if(regxAge.test(age.value)){
@@ -187,7 +185,7 @@ function showVaildation(){
           Invalid4.style.display = "none"
           setTimeout(() => {
             valid4.style.display = "none"
-          },3000);
+          },3000)
     }else{
         Invalid4.classList.add("invalid-feedback")
         valid4.classList.remove("valid-feedback")
@@ -195,15 +193,23 @@ function showVaildation(){
           valid4.style.display = "none"
           setTimeout(() => {
             Invalid4.style.display = "none"
-          },3000);
+          },3000)
            flag = false
     }
     return flag
 }
 function UniqueValue(){
-    let isDuplicate = arr.some(e => e.Email.toLowerCase() === mail.value.toLowerCase());
-    console.log(isDuplicate);
-    
+  var isDuplicate;
+  if (btnAdd.innerHTML === "Update") {
+    isDuplicate = arr.some(function(e){
+      return e.Email.toLowerCase() === mail.value.toLowerCase() && arr[currentIndex].Email !== e.Email;
+  })
+  }
+    else{
+      isDuplicate = arr.some(function(e){ 
+      return e.Email.toLowerCase() === mail.value.toLowerCase()
+    });
+  }
     if(isDuplicate){
         Repeat.classList.add("invalid-feedback")
         Repeat.style.display = "block" 

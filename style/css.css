@@ -4,6 +4,17 @@
     box-sizing: border-box;
 }
 
+span{
+    display:  block;
+    color: red;
+    right: -18%;
+    position: absolute;
+    top: 20%;
+}
+
+label{
+    position: relative;
+}
 .data{
     height: 24vh;
 }
